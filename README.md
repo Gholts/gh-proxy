@@ -1,17 +1,26 @@
 # gh-proxy
 
+## Fork 變更
+
+  - 精簡了工具頁面排版
+  - 更改了工具頁面配色以及風格
+  ![](zen_arrsMQQbLQ.png)
+
+<details>
+    <summary>原專案 Readme</summary>
+
 ## 我的修改
 [增加支持 api.github.com](https://zelikk.blogspot.com/2023/03/github-proxy-api-github-com.html)
 
 增加支持 git.io
 
-做了工具页面, 方便使用 
+做了工具页面，方便使用 
 https://ghproxy.crazypeace.workers.dev/
 
 用法演示视频   
 https://youtu.be/F9re4Tuy7BA
 
-支持github脚本的无限嵌套调用 演示视频  
+支持 github 脚本的无限嵌套调用 演示视频  
 https://youtu.be/5zCJsCoi_lQ
 
 在 Cloudflare 的 worker 上自建 Github 代理 教程  
@@ -21,11 +30,11 @@ https://zelikk.blogspot.com/2023/06/gh-proxy-worker.html
 https://zelikk.blogspot.com/2023/07/replit-gh-proxy.html
 
 <details>
-    <summary>原项目readme (点击展开)</summary>
+    <summary>原项目 readme （点击展开）</summary>
   
 ## 简介
 
-github release、archive以及项目文件的加速项目，支持clone，有Cloudflare Workers无服务器版本以及Python版本
+github release、archive 以及项目文件的加速项目，支持 clone，有 Cloudflare Workers 无服务器版本以及 Python 版本
 
 ## 演示
 
@@ -35,19 +44,19 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 ![imagea272c95887343279.png](https://img.maocdn.cn/img/2021/04/24/imagea272c95887343279.png)
 
-当然也欢迎[捐赠](#捐赠)以支持作者
+当然也欢迎 [捐赠](#捐赠)以支持作者
 
-## python版本和cf worker版本差异
+## python 版本和 cf worker 版本差异
 
-- python版本支持进行文件大小限制，超过设定返回原地址 [issue #8](https://github.com/hunshcn/gh-proxy/issues/8)
+- python 版本支持进行文件大小限制，超过设定返回原地址 [issue #8](https://github.com/hunshcn/gh-proxy/issues/8)
 
-- python版本支持特定user/repo 封禁/白名单 以及passby [issue #41](https://github.com/hunshcn/gh-proxy/issues/41)
+- python 版本支持特定 user/repo 封禁/白名单 以及 passby [issue #41](https://github.com/hunshcn/gh-proxy/issues/41)
 
 ## 使用
 
-直接在copy出来的url前加`https://gh.api.99988866.xyz/`即可
+直接在 copy 出来的 url 前加`https://gh.api.99988866.xyz/`即可
 
-也可以直接访问，在input输入
+也可以直接访问，在 input 输入
 
 ***大量使用请自行部署，以上域名仅为演示使用。***
 
@@ -59,17 +68,17 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 - 分支源码：https://github.com/hunshcn/project/archive/master.zip
 
-- release源码：https://github.com/hunshcn/project/archive/v0.1.0.tar.gz
+- release 源码：https://github.com/hunshcn/project/archive/v0.1.0.tar.gz
 
-- release文件：https://github.com/hunshcn/project/releases/download/v0.1.0/example.zip
+- release 文件：https://github.com/hunshcn/project/releases/download/v0.1.0/example.zip
 
 - 分支文件：https://github.com/hunshcn/project/blob/master/filename
 
-- commit文件：https://github.com/hunshcn/project/blob/1111111111111111111111111111/filename
+- commit 文件：https://github.com/hunshcn/project/blob/1111111111111111111111111111/filename
 
 - gist：https://gist.githubusercontent.com/cielpy/351557e6e465c12986419ac5a4dd2568/raw/cmd.py
 
-## cf worker版本部署
+## cf worker 版本部署
 
 首页：https://workers.cloudflare.com
 
@@ -77,13 +86,13 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 复制 [index.js](https://cdn.jsdelivr.net/gh/hunshcn/gh-proxy@master/index.js)  到左侧代码框，`Save and deploy`。如果正常，右侧应显示首页。
 
-`ASSET_URL`是静态资源的url（实际上就是现在显示出来的那个输入框单页面）
+`ASSET_URL`是静态资源的 url（实际上就是现在显示出来的那个输入框单页面）
 
-`PREFIX`是前缀，默认（根路径情况为"/"），如果自定义路由为example.com/gh/*，请将PREFIX改为 '/gh/'，注意，少一个杠都会错！
+`PREFIX`是前缀，默认（根路径情况为"/"），如果自定义路由为 example.com/gh/*，请将 PREFIX 改为 '/gh/'，注意，少一个杠都会错！
 
-## Python版本部署
+## Python 版本部署
 
-### Docker部署
+### Docker 部署
 
 ```
 docker run -d --name="gh-proxy-py" \
@@ -92,17 +101,17 @@ docker run -d --name="gh-proxy-py" \
   hunsh/gh-proxy-py:latest
 ```
 
-第一个80是你要暴露出去的端口
+第一个 80 是你要暴露出去的端口
 
 ### 直接部署
 
-安装依赖（请使用python3）
+安装依赖（请使用 python3）
 
 ```pip install flask requests```
 
 按需求修改`app/main.py`的前几项配置
 
-*注意:* 可能需要在`return Response`前加两行
+*注意：* 可能需要在`return Response`前加两行
 ```python3
 if 'Transfer-Encoding' in headers:
     headers.pop('Transfer-Encoding')
@@ -110,21 +119,21 @@ if 'Transfer-Encoding' in headers:
 
 ### 注意
 
-python版本的机器如果无法正常访问github.io会启动报错，请自行修改静态文件url
+python 版本的机器如果无法正常访问 github.io 会启动报错，请自行修改静态文件 url
 
-python版本默认走服务器（2021.3.27更新）
+python 版本默认走服务器（2021.3.27 更新）
 
-## Cloudflare Workers计费
+## Cloudflare Workers 计费
 
-到 `overview` 页面可参看使用情况。免费版每天有 10 万次免费请求，并且有每分钟1000次请求的限制。
+到 `overview` 页面可参看使用情况。免费版每天有 10 万次免费请求，并且有每分钟 1000 次请求的限制。
 
 如果不够用，可升级到 $5 的高级版本，每月可用 1000 万次请求（超出部分 $0.5/百万次请求）。
 
 ## Changelog
 
 * 2020.04.10 增加对`raw.githubusercontent.com`文件的支持
-* 2020.04.09 增加Python版本（使用Flask）
-* 2020.03.23 新增了clone的支持
+* 2020.04.09 增加 Python 版本（使用 Flask）
+* 2020.03.23 新增了 clone 的支持
 * 2020.03.22 初始版本
 
 ## 链接
